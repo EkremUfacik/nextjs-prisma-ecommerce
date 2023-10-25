@@ -38,7 +38,7 @@ const CartCard = () => {
           <AiOutlinePlus className=" hover:text-green-600 hover:scale-110 transition-all active:scale-75 cursor-pointer text-gray-300 text-sm" />
         </div>
         <div>
-          <BsFillTrashFill className="w-8 h-8 text-red-400 cursor-pointer hover:text-red-500 bg-red-100 p-2 rounded-full" />
+          <BsFillTrashFill className="w-8 h-8 text-red-400 cursor-pointer hover:text-red-500 p-2" />
         </div>
       </div>
     </div>

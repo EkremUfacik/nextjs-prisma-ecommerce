@@ -1,7 +1,9 @@
+import AddToCartButton from "@/components/AddToCartButton";
 import Image from "next/image";
 import home from "public/assets/home.jpg";
+import { incrementProductQuantity } from "@/app/actions/cart-actions";
 
-const ProductDetails = () => {
+const ProductDetails = ({ params: { id } }: { params: { id: string } }) => {
   return (
     <div className="flex flex-col gap-12 lg:flex-row lg:items-center w-2/3 py-20 mx-auto">
       <Image
@@ -27,7 +29,11 @@ const ProductDetails = () => {
         <p className="mb-8 font-bold text-lg">
           Price: <span className="badge badge-neutral p-3 text-lg">49$</span>
         </p>
-        <button className="btn btn-info">Add to cart</button>
+        <AddToCartButton
+          productId={id}
+          incrementProductQuantity={incrementProductQuantity}
+          className={"btn btn-info disabled:bg-current"}
+        />
       </div>
     </div>
   );

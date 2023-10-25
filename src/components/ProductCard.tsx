@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Product } from "@prisma/client";
 import Link from "next/link";
+import AddToCartButton from "./AddToCartButton";
+import { incrementProductQuantity } from "@/app/actions/cart-actions";
 
 interface ProductCardProps {
   product: Product;
@@ -31,9 +33,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <div className="badge badge-success p-3 font-bold">20$</div>
         </div>
       </Link>
-      <button className="absolute -bottom-12 left-1/2 -translate-x-1/2 btn btn-secondary opacity-0 group-hover:-translate-y-6 group-hover:opacity-100 ">
-        Add Cart
-      </button>
+      <AddToCartButton
+        productId={product.id}
+        incrementProductQuantity={incrementProductQuantity}
+        className={
+          "absolute -bottom-12 left-1/2 -translate-x-1/2 btn btn-secondary opacity-0 group-hover:-translate-y-6 group-hover:opacity-100 disabled:opacity-80 disabled:bg-blue-950"
+        }
+      />
     </div>
   );
 };

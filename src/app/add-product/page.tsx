@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const schema = z.object({
   name: z.string().min(3),
@@ -13,6 +14,7 @@ const schema = z.object({
 });
 
 const AddProduct = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -23,6 +25,7 @@ const AddProduct = () => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       await axios.post("/api/products", { ...data, price: Number(data.price) });
+      router.push("/");
     } catch (err) {
       console.log(err);
     }
@@ -31,7 +34,7 @@ const AddProduct = () => {
   console.log(errors);
 
   return (
-    <div className="text-center">
+    <div className="text-center my-20">
       <h1 className="text-xl font-bold py-8">Add Product</h1>
       <form
         className="flex flex-col justify-center items-center max-w-2xl mx-auto gap-4"
