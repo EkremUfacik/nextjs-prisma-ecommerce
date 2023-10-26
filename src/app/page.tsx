@@ -15,7 +15,7 @@ const Home = async () => {
   return (
     <div className="pb-12">
       <div className="w-full h-[680px] relative">
-        <Image src={home} alt="home" fill className="" />
+        <Image src={home} alt="home" fill className="" priority />
         <p className="absolute left-1/2 top-1/2 -translate-x-1/2 w-fit whitespace-nowrap text-2xl font-bold tracking-widest">
           Welcome to Free Shop
         </p>
