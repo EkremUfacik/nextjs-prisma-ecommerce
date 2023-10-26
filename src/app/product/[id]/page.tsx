@@ -21,7 +21,7 @@ const ProductDetails = async ({
 
   return (
     <div className="flex flex-col gap-12 lg:flex-row lg:items-center w-3/4 mb-48 mt-32 mx-auto">
-      <div className="relative w-full h-[400px] flex-1 bg-white rounded-lg">
+      <div className="relative w-full h-[400px] bg-white rounded-lg lg:flex-1">
         <Image
           src={product.imageUrl}
           alt="product"
