@@ -28,7 +28,7 @@ const NavCart = ({ cart }: { cart: ShoppingCart | null }) => {
             />
           </svg>
           <span className="badge badge-sm indicator-item badge-neutral">
-            {cart?.size}
+            {cart?.size || 0}
           </span>
         </div>
       </label>

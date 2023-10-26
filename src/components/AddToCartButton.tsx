@@ -41,7 +41,7 @@ const AddToCartButton = ({
       </button>
       {success && (
         <div className="toast toast-bottom toast-end z-40">
-          <div className="alert alert-success">
+          <div className="alert alert-info">
             <span>Product added.</span>
           </div>
         </div>

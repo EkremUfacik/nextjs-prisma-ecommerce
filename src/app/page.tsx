@@ -16,8 +16,8 @@ const Home = async () => {
   console.log(products);
 
   return (
-    <div className="py-12">
-      <div className="w-full h-[600px] relative">
+    <div className="pb-12">
+      <div className="w-full h-[680px] relative">
         <Image src={home} alt="home" fill className="" />
         <p className="absolute left-1/2 top-1/2 -translate-x-1/2 w-fit whitespace-nowrap text-2xl font-bold tracking-widest">
           Welcome to Free Shop

@@ -12,25 +12,27 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="card w-80 bg-slate-800 hover:shadow-lg hover:shadow-slate-800 pb-4 cursor-pointer transition-all relative group ">
       <Link href={`/product/${product.id}`}>
-        <figure className="relative w-full h-80 rounded-t-xl">
+        <figure className="relative w-full h-80 rounded-t-xl bg-white">
           <Image
             src={product.imageUrl}
             alt="Shoes"
             fill
-            className="object-cover"
+            className="object-contain p-4"
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">
-            Shoes!
+          <h2 className="card-title  ">
+            {product.name}
             <div className="badge badge-secondary">NEW</div>
           </h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <p className="">{product.description.slice(0, 90)}...</p>
           <div className="card-actions justify-end">
             <div className="badge badge-neutral">Fashion</div>
             <div className="badge badge-secondary">Products</div>
           </div>
-          <div className="badge badge-success p-3 font-bold">20$</div>
+          <div className="badge badge-success p-3 text-lg font-bold">
+            {product.price}$
+          </div>
         </div>
       </Link>
       <AddToCartButton

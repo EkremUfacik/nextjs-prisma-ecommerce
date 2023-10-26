@@ -16,21 +16,24 @@ const Cart = async () => {
   console.log(cart);
   return (
     <div className="min-h-[600px] p-8">
-      <h1>Cart</h1>
-      {/* <div className="">
-        <Image
-          src={emptyCart}
-          alt="empty cart"
-          width={400}
-          height={400}
-          className="mx-auto "
-        />
-      </div> */}
+      <h1 className="text-center text-4xl font-semibold">Cart</h1>
+      {!cart?.size && (
+        <div className="">
+          <Image
+            src={emptyCart}
+            alt="empty cart"
+            width={400}
+            height={400}
+            className="mx-auto "
+          />
+        </div>
+      )}
+      {cart?.items.map((cartProduct) => (
+        <CartCard key={cartProduct.id} cartProduct={cartProduct} />
+      ))}
 
-      <CartCard />
-      <CartCard />
       <p className="text-center my-12 font-bold text-xl">
-        Total Price: <span>999$</span>
+        Total Price: <span>{cart?.subtotal}$</span>
       </p>
     </div>
   );
