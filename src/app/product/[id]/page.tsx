@@ -2,22 +2,22 @@ import AddToCartButton from "@/components/AddToCartButton";
 import Image from "next/image";
 import { incrementProductQuantity } from "@/app/actions/cart-actions";
 import { Product } from "@prisma/client";
-
-const getProduct = async (id: string): Promise<Product> => {
-  const res = await fetch(`http://localhost:3000/api/products/${id}`, {
-    cache: "no-cache",
-  });
-  const data = await res.json();
-  return data;
-};
+import { prisma } from "@/lib/db/prisma";
+import { notFound } from "next/navigation";
 
 const ProductDetails = async ({
   params: { id },
 }: {
   params: { id: string };
 }) => {
-  const product = await getProduct(id);
+  const product: Product | null = await prisma.product.findUnique({
+    where: {
+      id,
+    },
+  });
   console.log(product);
+
+  if (!product) return notFound();
 
   return (
     <div className="flex flex-col gap-12 lg:flex-row lg:items-center w-3/4 mb-48 mt-32 mx-auto">

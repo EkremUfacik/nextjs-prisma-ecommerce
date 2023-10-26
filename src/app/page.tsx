@@ -1,18 +1,15 @@
 import ProductCard from "@/components/ProductCard";
+import { prisma } from "@/lib/db/prisma";
 import { Product } from "@prisma/client";
 import Image from "next/image";
 import home from "public/assets/home.jpg";
 
-const getProducts = async () => {
-  const data = await fetch("http://localhost:3000/api/products", {
-    cache: "no-store",
-  });
-  const products = await data.json();
-  return products;
-};
-
 const Home = async () => {
-  const products = await getProducts();
+  const products = await prisma.product.findMany({
+    orderBy: {
+      id: "desc",
+    },
+  });
   console.log(products);
 
   return (

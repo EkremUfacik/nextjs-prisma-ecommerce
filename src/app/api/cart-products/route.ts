@@ -15,9 +15,6 @@ export const PUT = async (req: NextRequest) => {
       });
     }
 
-    // const newProduct = await prisma.product.create({
-    //   data: body,
-    // });
     return NextResponse.json({ message: "Updated" }, { status: 200 });
   } catch (err) {
     console.log(err);
