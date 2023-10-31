@@ -25,7 +25,7 @@ const Cart = async () => {
       ))}
 
       <p className="text-center my-12 font-bold text-xl">
-        Total Price: <span>{cart?.subtotal}$</span>
+        Total Price: <span>{cart?.subtotal || 0}$</span>
       </p>
     </div>
   );

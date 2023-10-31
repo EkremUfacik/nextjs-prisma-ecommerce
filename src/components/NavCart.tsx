@@ -38,7 +38,7 @@ const NavCart = ({ cart }: { cart: ShoppingCart | null }) => {
       >
         <div className="card-body">
           <span className="font-bold text-lg">{cart?.size} Products</span>
-          <span className="text-info">Subtotal: ${cart?.subtotal}</span>
+          <span className="text-info">Subtotal: ${cart?.subtotal || 0}</span>
           <div className="card-actions">
             <Link
               href="/cart"

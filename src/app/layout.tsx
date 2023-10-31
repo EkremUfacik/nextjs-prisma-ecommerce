@@ -3,6 +3,7 @@ import { Exo_2 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SessionProvider from "@/providers/SessionProvider";
 
 const exo_2 = Exo_2({
   weight: ["300", "400", "700", "900"],
@@ -22,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={exo_2.className}>
-        <Navbar />
-        {children}
-        <Footer />
+        <SessionProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   );

@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import profile from "public/assets/profile.png";
 import shopping from "public/assets/shopping.png";
 import NavCart from "./NavCart";
 import { getCart } from "@/lib/db/cart";
+import UserMenuButtons from "./UserMenuButtons";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const Navbar = async () => {
+  const session = await getServerSession(authOptions);
   const cart = await getCart();
 
   return (
@@ -26,30 +29,7 @@ const Navbar = async () => {
 
         <NavCart cart={cart} />
 
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="bg-white rounded-full">
-              <Image src={profile} width={30} height={30} alt="profile" />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <Link href="#" className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="#">Settings</Link>
-            </li>
-            <li>
-              <Link href="#">Logout</Link>
-            </li>
-          </ul>
-        </div>
+        <UserMenuButtons session={session} />
       </div>
     </div>
   );
