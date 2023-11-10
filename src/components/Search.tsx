@@ -8,6 +8,8 @@ const Search = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
+  console.log(pathname);
+
   const handleSearch = (e: ChangeEvent<HTMLFormElement>) => {
     console.log(e);
     const search = e.target.search.value;
@@ -17,6 +19,8 @@ const Search = () => {
     replace(pathname + "?" + params);
     e.target.reset();
   };
+
+  if (pathname !== "/") return null;
 
   return (
     <form onSubmit={handleSearch}>
