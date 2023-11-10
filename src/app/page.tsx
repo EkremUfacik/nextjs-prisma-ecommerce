@@ -4,8 +4,19 @@ import { Product } from "@prisma/client";
 import Image from "next/image";
 import home from "public/assets/home.jpg";
 
-const Home = async () => {
+type props = {
+  searchParams: { search: string };
+};
+
+const Home = async ({ searchParams: { search } }: props) => {
+  console.log(search);
   const products = await prisma.product.findMany({
+    where: {
+      OR: [
+        { name: { contains: search || "", mode: "insensitive" } },
+        { description: { contains: search || "", mode: "insensitive" } },
+      ],
+    },
     orderBy: {
       id: "desc",
     },
@@ -21,11 +32,15 @@ const Home = async () => {
         </p>
       </div>
       <h1 className="text-center py-8 text-3xl font-bold">Products</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto w-fit gap-8">
-        {products.map((product: Product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      {products.length === 0 ? (
+        <p className="text-center my-10 text-xl">Product was not found!!</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto w-fit gap-8">
+          {products.map((product: Product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

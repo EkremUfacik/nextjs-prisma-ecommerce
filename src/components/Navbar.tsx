@@ -6,6 +6,7 @@ import { getCart } from "@/lib/db/cart";
 import UserMenuButtons from "./UserMenuButtons";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import Search from "./Search";
 
 const Navbar = async () => {
   const session = await getServerSession(authOptions);
@@ -20,11 +21,7 @@ const Navbar = async () => {
       </div>
       <div className="flex-none">
         <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto me-4"
-          />
+          <Search />
         </div>
 
         <NavCart cart={cart} />
