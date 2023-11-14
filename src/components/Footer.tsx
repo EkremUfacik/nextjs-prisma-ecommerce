@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-neutral p-10 text-neutral-content relative w-full bottom-0">
+    <footer className="bg-neutral p-10 text-neutral-content relative w-full bottom-0 ">
       <div className="footer m-auto max-w-7xl">
         <div>
           <span className="footer-title">Services</span>
