@@ -14,22 +14,30 @@ type props = {
 
 const CartCard = ({ cartProduct }: props) => {
   const [loading, setLoading] = useState(false);
+  const [productQuantity, setProductQuantity] = useState(cartProduct.quantity);
+
   const router = useRouter();
   const handleQuantity = async (quantity: number, id: string) => {
     try {
+      setProductQuantity(quantity);
       setLoading(true);
       const data = await axios.put(`/api/cart-products`, {
         quantity,
         id,
       });
-      setLoading(false);
       console.log(data);
       router.refresh();
     } catch (error) {
+      setProductQuantity(cartProduct.quantity);
       console.log(error);
+    } finally {
       setLoading(false);
     }
   };
+
+  if (productQuantity === 0) {
+    return null;
+  }
 
   console.log(cartProduct);
   return (
@@ -55,7 +63,7 @@ const CartCard = ({ cartProduct }: props) => {
       <div className="flex gap-8 justify-center items-center mb-2">
         {/* <p className="font-bold">{product.item_total_price}$</p> */}
         <p className="font-bold text-lg">
-          {cartProduct.product.price * cartProduct.quantity}$
+          {cartProduct.product.price * productQuantity}$
         </p>
 
         <div className="flex justify-center items-center gap-3 bg-primary rounded-2xl px-4 py-1 text-lg text-white h-8 w-24">
@@ -66,11 +74,11 @@ const CartCard = ({ cartProduct }: props) => {
               handleQuantity(cartProduct.quantity - 1, cartProduct.id)
             }
           />
-          {loading ? (
+          {/* {loading ? (
             <span className="loading loading-spinner loading-md" />
-          ) : (
-            cartProduct.quantity
-          )}
+          ) : ( */}
+          {productQuantity}
+          {/* )} */}
           <AiOutlinePlus
             className=" hover:text-green-600 hover:scale-110 transition-all active:scale-75 cursor-pointer text-gray-300 w-10"
             style={{ pointerEvents: loading && "none" }}
